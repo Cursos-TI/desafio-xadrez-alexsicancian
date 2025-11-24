@@ -1,32 +1,57 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
-
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    int casasTorre = 5;    // Quantidade de casas que a Torre vai se mover
+    int casasBispo = 5;    // Quantidade de casas que o Bispo vai se mover
+    int casasRainha = 8;   // Quantidade de casas que a Rainha vai se mover
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    int i;                 // Variável de controle
+    int contadorBispo;     // Contador para o Bispo
+    int contadorRainha;    // Contador para a Rainha
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    // ======================================================
+    // Movimentação da TORRE
+    // ======================================================
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    printf("Movimento da Torre (5 casas para a Direita):\n");
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    for (i = 1; i <= casasTorre; i++) {
+        // A cada iteração, a torre anda uma casa para a direita
+        printf("Passo %d - Direita\n", i);
+    }
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    printf("\n");
+
+    // ======================================================
+    // Movimentação do BISPO
+    // ======================================================
+
+    printf("Movimento do Bispo (5 casas na diagonal Cima Direita):\n");
+
+    contadorBispo = 1; // Inicializa o contador
+
+    while (contadorBispo <= casasBispo) {
+        // A cada iteração, o bispo anda uma casa na diagonal (cima + direita)
+        printf("Passo %d - Cima Direita\n", contadorBispo);
+        contadorBispo++; // Incrementa o contador
+    }
+
+    printf("\n");
+
+    // ======================================================
+    // Movimentação da RAINHA
+    // ======================================================
+
+    printf("Movimento da Rainha (8 casas para a Esquerda):\n");
+
+    contadorRainha = 1; // Inicializa o contador
+
+    do {
+        // A cada iteração, a rainha anda uma casa para a esquerda
+        printf("Passo %d - Esquerda\n", contadorRainha);
+        contadorRainha++; // Incrementa o contador
+    } while (contadorRainha <= casasRainha);
 
     return 0;
 }
