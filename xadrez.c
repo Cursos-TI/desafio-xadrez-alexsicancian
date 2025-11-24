@@ -1,85 +1,83 @@
 #include <stdio.h>
 
-int main() {
+// Movimento da Torre (recursivo)
+void moverTorre(int casas, int passo) {
+    if (casas == 0) return;
+    printf("Passo %d - Direita\n", passo);
+    moverTorre(casas - 1, passo + 1);
+}
 
-    int casasTorre = 5;    // Quantidade de casas que a Torre vai se mover
-    int casasBispo = 5;    // Quantidade de casas que o Bispo vai se mover
-    int casasRainha = 8;   // Quantidade de casas que a Rainha vai se mover
+// Movimento da Rainha (recursivo)
+void moverRainha(int casas, int passo) {
+    if (casas == 0) return;
+    printf("Passo %d - Esquerda\n", passo);
+    moverRainha(casas - 1, passo + 1);
+}
 
-    int i;                 // Variável de controle
-    int contadorBispo;     // Contador para o Bispo
-    int contadorRainha;    // Contador para a Rainha
+// Movimento do Bispo (recursivo + loops aninhados)
+void moverBispo(int casas, int passo) {
+    if (casas == 0) return;
 
-    // ======================================================
-    // Movimentação da TORRE
-    // ======================================================
-
-    printf("Movimento da Torre (5 casas para a Direita):\n");
-
-    for (i = 1; i <= casasTorre; i++) {
-        // A cada iteração, a torre anda uma casa para a direita
-        printf("Passo %d - Direita\n", i);
-    }
-
-    printf("\n");
-
-    // ======================================================
-    // Movimentação do BISPO
-    // ======================================================
-
-    printf("Movimento do Bispo (5 casas na diagonal Cima Direita):\n");
-
-    contadorBispo = 1; // Inicializa o contador
-
-    while (contadorBispo <= casasBispo) {
-        // A cada iteração, o bispo anda uma casa na diagonal (cima + direita)
-        printf("Passo %d - Cima Direita\n", contadorBispo);
-        contadorBispo++; // Incrementa o contador
-    }
-
-    printf("\n");
-
-    // ======================================================
-    // Movimentação da RAINHA
-    // ======================================================
-
-    printf("Movimento da Rainha (8 casas para a Esquerda):\n");
-
-    contadorRainha = 1; // Inicializa o contador
-
-    do {
-        // A cada iteração, a rainha anda uma casa para a esquerda
-        printf("Passo %d - Esquerda\n", contadorRainha);
-        contadorRainha++; // Incrementa o contador
-    } while (contadorRainha <= casasRainha);
-
-    // ======================================================
-    // Movimentação do CAVALO
-    // ======================================================
-
-    printf("\nMovimento do Cavalo (2 casas para Baixo e 1 para a Esquerda):\n");
-
-    int movimentoVertical = 2;   // Quantidade de casas para baixo
-    int movimentoHorizontal = 1; // Quantidade de casas para a esquerda
-
-    int j = 1; 
-
-    for (int i = 1; i <= movimentoVertical; i++)
-    {
-        printf("Passo %d - Baixo\n", i);  // Movimento vertical do cavalo
-
-        
-        j = 1;
-        while (j < 1) {
-            j++;
+    for (int v = 1; v <= 1; v++) {
+        for (int h = 1; h <= 1; h++) {
+            printf("Passo %d - Cima Direita\n", passo);
         }
     }
-    int contadorEsquerda = 1;
-    while (contadorEsquerda <= movimentoHorizontal) {
-        printf("Passo %d - Esquerda\n", movimentoVertical + contadorEsquerda);
-        contadorEsquerda++;
-    }
 
+    moverBispo(casas - 1, passo + 1);
+}
+
+// Movimento do Cavalo (loops aninhados complexos)
+void moverCavalo() {
+    int cima = 2;
+    int direita = 1;
+    int movCima = 0;
+    int movDir = 0;
+
+    printf("Movimento do Cavalo (2 Cima, 1 Direita):\n");
+
+    for (int passo = 1; passo <= 3; passo++) {
+        for (int fase = 1; fase <= 2; fase++) {
+
+            if (movCima < cima) {
+                if (fase != 1) continue;
+                movCima++;
+                printf("Passo %d - Cima\n", passo);
+                break;
+            }
+
+            if (movCima == cima && movDir < direita) {
+                if (fase != 2) continue;
+                movDir++;
+                printf("Passo %d - Direita\n", passo);
+                break;
+            }
+        }
+    }
+}
+
+int main() {
+    int casasTorre = 5;
+    int casasBispo = 5;
+    int casasRainha = 8;
+
+    // Torre
+    printf("Movimento da Torre:\n");
+    moverTorre(casasTorre, 1);
+    printf("\n");
+
+    // Bispo
+    printf("Movimento do Bispo:\n");
+    moverBispo(casasBispo, 1);
+    printf("\n");
+
+    // Rainha
+    printf("Movimento da Rainha:\n");
+    moverRainha(casasRainha, 1);
+    printf("\n");
+
+    // Cavalo
+    moverCavalo();
 
     return 0;
 }
